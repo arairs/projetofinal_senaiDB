@@ -1,4 +1,5 @@
 -- create schema if not exists churrascoMaranhao default character set utf8;
+drop database churrascoMaranhao;
 create database churrascoMaranhao;
 
 -- use churrascoMaranhao;
@@ -11,6 +12,7 @@ create table if not exists produto(
     qtdEstoque int,
     	constraint PK_produto primary key(idProduto)
 );
+-- alter table if exists produto rename column "descrição" to descricao;
 
 create table if not exists comanda(
 	idComanda serial,
