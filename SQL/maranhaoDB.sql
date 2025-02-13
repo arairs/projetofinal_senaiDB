@@ -6,7 +6,7 @@ create database churrascoMaranhao;
 create table if not exists produto(
 	idProduto serial,
 	nome varchar(150) not null,
-    descrição varchar(255) not null,
+    descricao varchar(255) not null,
     preco decimal(5,2) not null,
     qtdEstoque int,
     	constraint PK_produto primary key(idProduto)
@@ -32,3 +32,4 @@ create table if not exists pedido(
         constraint FK_pedido_comanda foreign key(idComanda) references comanda(idComanda),
         constraint FK_pedido_produto foreign key(idProduto) references produto(idProduto)
 );
+
