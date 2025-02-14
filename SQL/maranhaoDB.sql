@@ -35,3 +35,49 @@ create table if not exists pedido(
         constraint FK_pedido_produto foreign key(idProduto) references produto(idProduto)
 );
 
+-- CONSULTAS
+-- Listar todas as comandas abertas.
+select 
+	abertura 
+		from comanda
+	where fechamento = null;
+
+-- Consultar o cardápio completo.
+select 
+	nome, 
+	descricao, 
+	preco, 
+	qtdEstoque 
+		from produto;
+select 
+	* 
+	from produto;
+
+-- Obter o histórico de pedidos realizados.
+select 
+	datapedido as hora, 
+	nomepedido, 
+	qtdpedido 
+		from pedido
+order by 1 desc;
+
+-- Verificar quais pratos foram pedidos em uma determinada comanda.
+select 
+	nomePedido as pratos,
+	qtdPedido as Qtd
+		from pedido p
+			inner join comanda c
+				on p.idComanda = c.idcomanda
+		where c.clientenome = 'Carlos Silva';
+
+select * from pedido;
+
+-- Calcular o total gasto por cada comanda.
+
+select idComanda, sum(pr.preco) as "preço", sum(pe.qtdPedido) from produto as pr
+	inner join pedido as pe
+		on pr.idproduto = pe.idproduto
+group by idComanda, qtdPedido;
+
+-- Implemente uma consulta SQL para identificar qual prato foi o mais pedido e quantas vezes ele foi solicitado.
+
